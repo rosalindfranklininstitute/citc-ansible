@@ -9,7 +9,13 @@ $(hostname)
 cluster_id={{ startnode_config.cluster_id }}
 packer_run=yes
 EOF'
-{% if ansible_local.citc.csp in ["aws", "google"] %}
+{ %if ansible_local.citc.csp == "google" %}
+sudo yum install -y epel-release
+sudo dnf config-manager --set-enabled powertools
+{% if ansible_local.citc.csp == "aws" %}
+sudo dnf -y --disablerepo '*' --enablerepo=extras swap centos-linux-repos centos-stream-repos
+sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo dnf upgrade -y libmodulemd
 sudo yum install -y epel-release
 sudo dnf config-manager --set-enabled powertools
 {% elif ansible_local.citc.csp == "oracle" %}
