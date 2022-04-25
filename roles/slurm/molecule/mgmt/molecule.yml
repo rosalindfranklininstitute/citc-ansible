@@ -18,10 +18,9 @@ provisioner:
       instance:
         slurm_role: mgmt
         slurm_packages:
-          - slurm
           - slurmctld
           - slurmdbd
-          - libpmi
+          - pmi
         slurm_version: 20.11
         slurm_cluster_name: cluster
         slurm_control_machine: mgmt
