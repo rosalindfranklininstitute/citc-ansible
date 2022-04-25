@@ -18,10 +18,11 @@ provisioner:
       instance:
         slurm_role: mgmt
         slurm_packages:
+          - slurm
           - slurmctld
           - slurmdbd
           - libpmi
-        slurm_version: 20.02
+        slurm_version: 20.11
         slurm_cluster_name: cluster
         slurm_control_machine: mgmt
         filesystem_mount_point: /shared
