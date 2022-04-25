@@ -89,7 +89,7 @@
 
 - name: install Slurm
   yum:
-    name: {{ item }} #-{{ item }}-{{ slurm_version }}*
+    name: "{{ item }}"
     state: present
   loop: "{{ slurm_packages }}"
 
