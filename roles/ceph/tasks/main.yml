@@ -45,3 +45,6 @@
     - ceph-mgr
     - ceph-mds
     - ceph-radosgw
+    - ceph-volume
+    - lvm2
+    - bc
