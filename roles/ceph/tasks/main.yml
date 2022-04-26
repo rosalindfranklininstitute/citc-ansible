@@ -1,7 +1,5 @@
 --- 
 
-ceph_version: quincy
-
 - name: Add Ceph x86_64 repository
   yum_repository:
     name: ceph
@@ -35,14 +33,15 @@ ceph_version: quincy
     gpgkey: https://download.ceph.com/keys/release.asc
 
 - name: install ceph
-    package:
-      name: 
-        - ceph
-        - ceph-base
-        - ceph-common
-        - ceph-osd
-        - ceph-mon
-        - ceph-mgr
-        - ceph-mds
-        - ceph-radosgw
-      state: present
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - ceph
+    - ceph-base
+    - ceph-common
+    - ceph-osd
+    - ceph-mon
+    - ceph-mgr
+    - ceph-mds
+    - ceph-radosgw
