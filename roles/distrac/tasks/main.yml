@@ -45,6 +45,9 @@
 
 - name: copy distrac to shared bin
   copy:
-    src: /mnt/{{ filesystem_mount_point }}/distrac/distrac/*.sh
+    src: "{{ item }}"
     dest: /mnt/{{ filesystem_mount_point }}/bin
     mode: u=rwx,g=rx,o=rx
+  with_fileglob:
+    - "{{ distrac_dir }}/distrac/*.sh"
+
