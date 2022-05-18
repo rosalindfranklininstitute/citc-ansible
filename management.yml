@@ -39,6 +39,7 @@
     - mysql
     - python
     - filesystem
+    - distrac
     - slurm
     - packer
     - ssh

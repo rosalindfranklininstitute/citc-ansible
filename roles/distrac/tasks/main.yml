@@ -1,0 +1,48 @@
+- name: ensure git is installed
+  package:
+    name: git
+
+- name: Ensure group distrac group exists
+  group:
+    name: distrac
+    state: present
+
+- name: create DisTRaC config directory
+  file:
+    path: /mnt/{{ filesystem_mount_point }}/distrac
+    state: directory
+    mode: 755
+
+- name: create shared bin config directory
+  file:
+    path: /mnt/{{ filesystem_mount_point }}/bin
+    state: directory
+    mode: 755
+
+
+- name: add /mnt/shared/bin to path
+  lineinfile: >
+    dest=/etc/environment
+    state=present
+    backrefs=yes
+    regexp='PATH=(["]*)((?!.*?{{shared_bin}}).*?)(["]*)$'
+    line="PATH=\1\2:{{shared_bin}}\3"
+
+- name: checkout DisTRaC
+  git:
+    repo: https://github.com/rosalindfranklininstitute/DisTRaC.git
+    force: yes
+    dest: /mnt/{{ filesystem_mount_point }}/distrac
+    version: master
+  
+- name: copy in sudoers files
+  copy:
+    src: /mnt/{{ filesystem_mount_point }}/distrac/sudoers/distrac
+    dest: /etc/sudoers.d/distrac
+    mode: u=r,g=r
+
+- name: copy distrac to shared bin
+  copy:
+    src: /mnt/{{ filesystem_mount_point }}/distrac/distrac/*.sh
+    dest: /mnt/{{ filesystem_mount_point }}/bin
+    mode: u=rwx,g=rx,o=rx
