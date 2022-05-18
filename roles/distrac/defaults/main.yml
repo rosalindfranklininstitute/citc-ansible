@@ -1,3 +1,5 @@
-filesystem_mount_point: /shared
+---
+
+filesystem_mount_point: shared
 shared_bin: /mnt/shared/bin
 distrac_dir: /mnt/shared/distrac
