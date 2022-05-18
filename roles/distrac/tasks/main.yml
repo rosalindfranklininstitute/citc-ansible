@@ -22,13 +22,13 @@
     mode: 0755
 
 
-- name: add /mnt/shared/bin to path
-  lineinfile: >
-    dest=/etc/environment
-    state=present
-    backrefs=yes
-    regexp='PATH=(["]*)((?!.*?{{shared_bin}}).*?)(["]*)$'
-    line="PATH=\1\2:{{shared_bin}}\3"
+# - name: add /mnt/shared/bin to path
+#   lineinfile: >
+#     dest=/etc/environment
+#     state=present
+#     backrefs=yes
+#     regexp='PATH=(["]*)((?!.*?{{shared_bin}}).*?)(["]*)$'
+#     line="PATH=\1\2:{{shared_bin}}\3"
 
 - name: checkout DisTRaC
   git:
