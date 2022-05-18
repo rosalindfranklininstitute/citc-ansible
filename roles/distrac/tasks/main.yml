@@ -39,7 +39,7 @@
   
 - name: copy in sudoers files
   copy:
-    src: {{ distrac_dir }}/sudoers_file/distrac
+    src: "{{ distrac_dir }}/sudoers_file/distrac"
     dest: /etc/sudoers.d/distrac
     mode: u=r,g=r
 
