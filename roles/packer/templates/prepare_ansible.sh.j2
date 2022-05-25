@@ -12,7 +12,7 @@ EOF'
 {% if ansible_local.citc.csp == "google" %}
 sudo yum install -y epel-release
 sudo dnf config-manager --set-enabled powertools
-{$ elif ansible_local.citc.csp == "aws" %}
+{% elif ansible_local.citc.csp == "aws" %}
 sudo yum install -y epel-release
 sudo dnf config-manager --set-enabled powertools
 sudo dnf install -y  kernel-devel-$(uname -r) kernel-headers-$(uname -r)
