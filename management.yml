@@ -62,7 +62,7 @@
     - finalise
     - apps
     - get_secrets
-    - webui
+  #  - webui
     - monitoring
     - clustershell
     - packages
