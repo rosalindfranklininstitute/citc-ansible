@@ -13,11 +13,15 @@ EOF'
 sudo yum install -y epel-release
 sudo dnf config-manager --set-enabled powertools
 {% elif ansible_local.citc.csp == "aws" %}
-sudo dnf -y --disablerepo '*' --enablerepo=extras swap centos-linux-repos centos-stream-repos
-sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-sudo dnf upgrade -y libmodulemd
+pwd
+curl -OL https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
+mv migrate2rocky.sh /tmp/
+chmod a+x /tmp/migrate2rocky.sh
+sudo /tmp/migrate2rocky.sh -r
+sudo /tmp/migrate2rocky.sh -V
 sudo yum install -y epel-release
 sudo dnf config-manager --set-enabled powertools
+sudo dnf install -y ansible git
 {% elif ansible_local.citc.csp == "oracle" %}
 sudo dnf install -y oracle-epel-release-el8
 sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
