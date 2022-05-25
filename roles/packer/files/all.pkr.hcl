@@ -63,10 +63,10 @@ source "amazon-ebs" "aws" {
     instance_type = var.aws_instance_type
     source_ami_filter {
         filters = {
-            name = "CentOS 8.*"
+            name = "Rocky-8-ec2*"
             architecture = var.aws_arch
         }
-        owners = ["125523088429"]
+        owners = ["792107900819"]
         most_recent = true
     }
     ssh_username = var.ssh_username
