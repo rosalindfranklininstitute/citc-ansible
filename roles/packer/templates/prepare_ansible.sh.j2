@@ -13,12 +13,6 @@ EOF'
 sudo yum install -y epel-release
 sudo dnf config-manager --set-enabled powertools
 {% elif ansible_local.citc.csp == "aws" %}
-pwd
-curl -OL https://raw.githubusercontent.com/rocky-linux/rocky-tools/main/migrate2rocky/migrate2rocky.sh
-mv migrate2rocky.sh /tmp/
-chmod a+x /tmp/migrate2rocky.sh
-sudo /tmp/migrate2rocky.sh -r
-sudo /tmp/migrate2rocky.sh -V
 sudo yum install -y epel-release
 sudo dnf config-manager --set-enabled powertools
 sudo dnf install -y ansible git
