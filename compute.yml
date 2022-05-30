@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: disable SELinux
-      selinux:
+      ansible.posix.selinux:
         state: permissive
         policy: targeted
 
