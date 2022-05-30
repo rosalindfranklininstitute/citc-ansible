@@ -95,5 +95,5 @@
 - name: Create DisTRaC group
   group:
     name: distrac
-    gid: 1000
+    gid: 2000
     state: present

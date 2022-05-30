@@ -7,7 +7,7 @@
 - name: Ensure group distrac group exists
   group:
     name: distrac
-    gid: 1000
+    gid: 2000
     state: present
 
 - name: create DisTRaC config directory
