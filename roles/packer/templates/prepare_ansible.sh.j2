@@ -31,3 +31,4 @@ EOF'
 sudo chmod u=rw,g=,o= /etc/ansible/facts.d/citc.fact
 sudo cat /etc/ansible/facts.d/citc.fact
 sudo mv /tmp/citc_authorized_keys /root/citc_authorized_keys
+ansible-galaxy collection list | grep posix
