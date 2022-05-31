@@ -3,11 +3,14 @@
 - hosts: compute
   become: yes
   tasks:
-    - name: install python-firewall
+    - name: install python
       package:
         name: python3
         state: present
-
+    - name: install firewalld
+      package:
+        name: firewalld 
+        state: present
 
     - name: disable SELinux
       shell: "sed -i s/^SELINUX=.*$/SELINUX=permissive/ /etc/selinux/config"
