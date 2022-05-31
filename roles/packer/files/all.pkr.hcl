@@ -63,7 +63,7 @@ source "amazon-ebs" "aws" {
     instance_type = var.aws_instance_type
     source_ami_filter {
         filters = {
-            name = "Rocky-8*"
+            name = "Rocky-8-ec2-8.5*"
             architecture = var.aws_arch
         }
         owners = ["792107900819"] #Owner ID as stated from https://forums.rockylinux.org/t/rocky-linux-official-aws-ami/3049/25
