@@ -4,9 +4,13 @@
   become: yes
   tasks:
     - name: disable SELinux
-      ansible.posix.selinux:
-        state: permissive
-        policy: targeted
+      shell: "sed -i s/^SELINUX=.*$/SELINUX=permissive/ /etc/selinux/config"
+    - name: Show SELINUX
+      shell: "cat /etc/selinux/config"
+      register: command_output
+
+    - debug:
+        var: command_output.stdout_lines
 
 - hosts: compute
   become: yes
