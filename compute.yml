@@ -21,3 +21,4 @@
     - mpi
     - slurm
     - monitoring
+    - ceph
