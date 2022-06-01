@@ -1,0 +1,3 @@
+---
+
+distrac_dir: "{{ software_install_dir }}/distrac"

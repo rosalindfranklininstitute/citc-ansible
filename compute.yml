@@ -1,15 +1,14 @@
 ---
 
 - hosts: compute
+  vars:
+    ansible_python_interpreter: /usr/libexec/platform-python
   become: yes
   tasks:
     - name: disable SELinux
       selinux:
         state: permissive
         policy: targeted
-
-- hosts: compute
-  become: yes
   roles:
     - citc_user
     - filesystem
@@ -22,3 +21,5 @@
     - mpi
     - slurm
     - monitoring
+    - ceph
+    - distrac
