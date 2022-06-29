@@ -23,3 +23,6 @@
     - slurm
     - monitoring
     - ceph
+    - role: distrac
+      tags:
+        - compute
