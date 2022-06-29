@@ -1,0 +1,67 @@
+---
+
+- name: ensure git is installed
+  package:
+    name: git
+  tags:
+  - compute
+
+- name: Ensure group distrac group exists
+  group:
+    name: distrac
+    gid: 2000
+    state: present
+  tags:
+  - compute
+  - management
+
+- name: create add user to distrac group script
+  copy:
+    src: add_user_to_distrac_group.sh
+    dest: /usr/local/libexec/add_user_to_distrac_group
+    mode: go=r,u=rwx
+  register: add_user_to_distrac_group
+  tags:
+  - management
+
+- name: create DisTRaC config directory
+  file:
+    path: "{{ distrac_src_dir }}"
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+  tags:
+  - compute
+
+- name: checkout DisTRaC
+  git:
+    repo: https://github.com/rosalindfranklininstitute/DisTRaC.git
+    force: yes
+    dest: "{{ distrac_src_dir }}"
+    version: master
+  tags:
+  - compute
+
+- name: copy in sudoers files
+  copy:
+    src: "{{ distrac_src_dir }}/sudoers_file/distrac"
+    dest: /etc/sudoers.d/distrac
+    mode: u=r,g=r
+  tags:
+  - compute
+
+- name: copy distrac to bin
+  copy:
+    src: "{{ item }}"
+    dest: /usr/bin
+    mode: u=rwx,g=rx,o=rx
+  with_fileglob:
+    - "{{ distrac_src_dir }}/distrac/*.sh"
+  tags:
+  - compute
+
+- name: install bc
+  package:
+    name: "bc"
+    state: present
+  tags:
+  - compute
