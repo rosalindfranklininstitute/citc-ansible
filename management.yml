@@ -45,6 +45,9 @@
     - security_updates
     - ntp
     - sssd
+    - role: distrac
+      tags:
+        - management
     - users
   tasks:
     - name: copy SSH public keys to slurm account
