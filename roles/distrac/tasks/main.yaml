@@ -1,0 +1,37 @@
+---
+
+- name: ensure git is installed
+  package:
+    name: git
+
+- name: create DisTRaC config directory
+  file:
+    path: "{{ distrac_src_dir }}"
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+
+- name: checkout DisTRaC
+  git:
+    repo: https://github.com/rosalindfranklininstitute/DisTRaC.git
+    force: yes
+    dest: "{{ distrac_src_dir }}"
+    version: master
+
+- name: copy in sudoers files
+  copy:
+    src: "{{ distrac_src_dir }}/sudoers_file/distrac"
+    dest: /etc/sudoers.d/distrac
+    mode: u=r,g=r
+
+- name: copy distrac to bin
+  copy:
+    src: "{{ item }}"
+    dest: /usr/bin
+    mode: u=rwx,g=rx,o=rx
+  with_fileglob:
+    - "{{ distrac_dir }}/distrac/*.sh"
+
+- name: install bc
+  package:
+    name: "bc"
+    state: present
